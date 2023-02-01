@@ -44,7 +44,6 @@ async function deleteSubtask(subtask, url) {
             method: 'DELETE',
             body: data
         })
-        .then(response => response.json())
         .then(response => console.log(JSON.stringify(response)))
 }
 
@@ -101,7 +100,6 @@ async function deleteToDo(task, url) {
             },
             body: data
         })
-        .then(response => response.json())
         .then(response => console.log(JSON.stringify(response)))
 }
 
@@ -127,7 +125,7 @@ let contacts = [{
     'id': 0,
     'lastName': 'Hügel',
     'firstName': 'Adam',
-    'email': 'HügelAdam@gmail.com',
+    'email': 'HuegelAdam@gmail.com',
     'phone': '123',
     'color': 'red'
 }, {

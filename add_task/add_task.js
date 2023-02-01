@@ -31,6 +31,7 @@ function renderTask() {
     inputDate.min = new Date().toISOString().split("T")[0];
 }
 
+/** Function sets needed variables and passes them along to createTask function  */
 function checkValdation(newStatus) {
     if (newStatus) {
         status = newStatus
@@ -52,7 +53,7 @@ function checkValdation(newStatus) {
         alert("unvalid Request, try again.")
     }
 }
-
+/** Function creates task depending on passed variables */
 function createTask(user, filteredLabels, status) {
     let title = document.getElementById('inputTitle');
     let description = document.getElementById('inputDescription');
@@ -75,7 +76,7 @@ function createTask(user, filteredLabels, status) {
     /*   setBackFormular(title, description) */
 }
 
-// Clear input fields
+/** Function clears input fields */
 function clearInputAddTask() {
     document.getElementById('inputDate').value = '';
     document.getElementById('inputTitle').value = '';
@@ -85,7 +86,7 @@ function clearInputAddTask() {
     document.getElementById('selectedColor').style.backgroundColor = '';
 }
 
-// category selection
+/** Function selects category */
 function selectTitle(id) {
     if (id === 'newCategory') {
         openInputCategory();
@@ -103,12 +104,14 @@ function selectedCategory(id) {
     document.getElementById('selectedColor').style.backgroundColor = selectedCategory[0].color;
 }
 
+/** onclick -> function opens category input, which is filled with categories that were created prior */
 function openInputCategory() {
     document.getElementById('placeSelectCategory').innerHTML = generateNewCategoryHTML();
     document.getElementById('boxButtonsColor').innerHTML = generateBoxButtonsHTML();
     createInput();
 }
 
+/** Function creates new category */
 function createNewCategory() {
     let newLabel = document.getElementById('inputCategory').value;
     let id = categoryLabels.length + 1;
@@ -122,6 +125,7 @@ function createNewCategory() {
     loadCategory();
 }
 
+/** Function saves category, so that it can be used later on */
 function loadCategory() {
     document.getElementById('addCategory').innerHTML = "";
     for (let i = 0; i < categoryLabels.length; i++) {
@@ -160,7 +164,7 @@ function createInput() {
 function clickedColor(id) {
     colorID = id;
     document.getElementById('boxButtonsColor').innerHTML = generateBoxButtonsHTML();
-    document.getElementById(colorID).style.boxShadow = "0 0 2px 0.5px rgba(0, 0, 0, 0.7)"
+    document.getElementById(`${colorID}`).style.boxShadow = "0 0 2px 0.5px rgba(0, 0, 0, 0.7)"
 }
 
 //user selection
@@ -173,7 +177,7 @@ function toggleDropdownUser() {
     }
 }
 
-
+/** Function selects user for the task, that is beeing created */
 function selectUser(e) {
     let id = document.getElementById(e);
     let numberId = e[e.length - 1]
@@ -195,6 +199,7 @@ function selectUser(e) {
     UsersToString();
 }
 
+/** Function loads created contacts into user selection */
 function loadUser() {
     document.getElementById('addUser').innerHTML = "";
     for (let i = 0; i < contacts.length; i++) {
@@ -272,7 +277,7 @@ function CreateNewSubtask(newTitle) {
     loadfilterTitles();
     unsetSubtaskHTML();
 }
-
+/** Function creates and saves subtask */
 function createChosenSubtask() {
     for (let i = 0; i < chosenTitles.length; i++) {
         const title = chosenTitles[i];
@@ -342,7 +347,7 @@ function createInputSubtask() {
     document.getElementById('subtaskInput').appendChild(x);
 }
 
-// change HTML 
+// change HTML
 
 function unsetPrioHTML() {
     document.getElementById('containerButtonsTask').innerHTML = `

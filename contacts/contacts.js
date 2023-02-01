@@ -42,6 +42,7 @@ function showLetters() {
     }
 }
 
+/** Function loads contacts into the provided place */
 function showContacts() {
     const cards = document.querySelectorAll('containerCard')
     for (let j = 0; j < cards.length; j++) {
@@ -71,7 +72,7 @@ function checkValdationContact(event, i) {
     }
 }
 
-
+/** Function creates contact depending on given variables pushes it into contacts array */
 function createContact(lastName, firstName, i) {
     let id;
     let editId;
@@ -156,7 +157,6 @@ function checkNamelength(name) {
         return true
     }
 }
-
 
 function closeContactForm() {
     document.getElementById('contactForm').classList.add('none');
