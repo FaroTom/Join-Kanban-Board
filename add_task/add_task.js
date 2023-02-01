@@ -47,7 +47,7 @@ function checkValdation(newStatus) {
     if (filteredLabels.length > 0 && filteredcontact.length > 0 && typeof priority !== 'undefined' > 0 && chosenTitles.length > 0) {
         createChosenSubtask();
         createTask(user, filteredLabels, status);
-        window.location.href = "/board/board.html";
+        window.location.href = "../board/board.html"
     } else {
         alert("unvalid Request, try again.")
     }
@@ -86,7 +86,6 @@ function clearInputAddTask() {
 }
 
 // category selection
-
 function selectTitle(id) {
     if (id === 'newCategory') {
         openInputCategory();
