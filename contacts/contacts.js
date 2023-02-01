@@ -14,6 +14,7 @@ async function includeHTML() {
 
 async function renderContacts() {
     /*  await getTodos(); */
+    saveContactsInStorage();
     filterLetters();
     showContacts();
 }
@@ -25,8 +26,16 @@ async function renderContacts() {
 let colors = ['orange', 'purple', 'blue', 'red', 'aqua', 'brown', 'grey', 'green'];
 let letters = [];
 
+function saveContactsInStorage() {
+    if (localStorage.getItem('contacts') == undefined) {
+        let contactsAsString = JSON.stringify(contacts)
+        localStorage.setItem('contacts', contactsAsString);
+    }
+}
+
 function filterLetters() {
-    contacts.forEach(contact => {
+    let storedContacts = JSON.parse(localStorage.getItem('contacts'))
+    storedContacts.forEach(contact => {
         if (!letters.includes(contact.firstName.charAt(0))) {
             letters.push(contact.firstName.charAt(0))
         }
@@ -49,12 +58,12 @@ function showContacts() {
         const card = cards[j];
         card.innerHTML = "";
     }
-    for (let i = 0; i < contacts.length; i++) {
-        const singleContact = contacts[i];
-
+    let storedContactsString = localStorage.getItem('contacts');
+    let storedContacts = JSON.parse(storedContactsString);
+    for (let i = 0; i < storedContacts.length; i++) {
+        const singleContact = storedContacts[i];
         let singleContactLetter = singleContact.firstName.charAt(0);
         let id = "boxContact" + singleContactLetter;
-
 
         document.getElementById(id).innerHTML += showContactsHTML(singleContact, i);
         document.getElementById('circle' + i).style.backgroundColor = singleContact.color;
@@ -72,7 +81,7 @@ function checkValdationContact(event, i) {
     }
 }
 
-/** Function creates contact depending on given variables pushes it into contacts array */
+/** Function creates contact depending on given variables and pushes it into contacts array */
 function createContact(lastName, firstName, i) {
     let id;
     let editId;
@@ -80,12 +89,13 @@ function createContact(lastName, firstName, i) {
     let phone = document.getElementById('phone').value;
     let email = document.getElementById('email').value;
     let color = document.getElementById('showContactImg').style.backgroundColor;
+    let storedContacts = JSON.parse(localStorage.getItem('contacts'));
     if (i) {
         editId = contacts[i].id;
         let index = contacts.indexOf(contacts[i])
         contacts.splice(index, 1)
     } else {
-        createId = contacts.length + 1;
+        createId = storedContacts.length;
     }
     editId ? id = editId : id = createId
 
@@ -97,12 +107,19 @@ function createContact(lastName, firstName, i) {
         'phone': phone,
         'color': color
     }
-    contacts.push(contact)
+    addContactToStorage(contact);
     i ? toggleOverlayEditContact() : toggleOverlayNewContact();
     renderContacts();
 }
 
-
+function addContactToStorage(contact) {
+    let storedContacts = localStorage.getItem('contacts');
+    localStorage.removeItem('contacts');
+    let storedContactsArray = JSON.parse(storedContacts);
+    storedContactsArray.push(contact);
+    let storedContactsString = JSON.stringify(storedContactsArray);
+    localStorage.setItem('contacts', storedContactsString);
+}
 
 function createColor() {
     let randomColor = colors[Math.floor(Math.random() * colors.length)]
@@ -133,12 +150,14 @@ function toggleTask() {
 }
 
 function showEditContact(i) {
-    document.getElementById('name').value = contacts[i].firstName + ' ' + contacts[i].lastName;
-    document.getElementById('email').value = contacts[i].email;
-    document.getElementById('phone').value = contacts[i].phone;
-    document.getElementById('showContactImg').style.backgroundColor = contacts[i].color;
-    showName();
-
+    let storedContacts = JSON.parse(localStorage.getItem('contacts'))
+    setTimeout(() => {
+        document.getElementById('name').value = storedContacts[i].firstName + ' ' + storedContacts[i].lastName;
+        document.getElementById('email').value = storedContacts[i].email;
+        document.getElementById('phone').value = storedContacts[i].phone;
+        document.getElementById('showContactImg').style.backgroundColor = storedContacts[i].color;
+        showName();
+    }, 10)
 }
 
 function showName() {
@@ -164,11 +183,11 @@ function closeContactForm() {
 
 function showSelectedContact(i) {
     resetContactClicked();
-
+    let storedContacts = JSON.parse(localStorage.getItem('contacts'));
     document.getElementById('showContactBox').innerHTML = '';
-    document.getElementById('showContactBox').innerHTML = showSelectedContactHTML(contacts[i], i);
+    document.getElementById('showContactBox').innerHTML = showSelectedContactHTML(storedContacts[i], i);
 
-    document.getElementById('showContactCircle').style.backgroundColor = contacts[i].color;
+    document.getElementById('showContactCircle').style.backgroundColor = storedContacts[i].color;
     document.getElementById("buttonContact" + i).style.backgroundColor = "#2A3647"
     document.getElementById("contactName" + i).style.color = "white"
 }
