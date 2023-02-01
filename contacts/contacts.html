@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join-Contacts</title>
+    <link rel="stylesheet" href="contacts.css">
+    <link rel="stylesheet" href="../assets/font/font.css">
+    <link rel="stylesheet" href="../navigation/navigation.css">
+    <link rel="stylesheet" href="../add_task/add_task.css">
+    <script src="../navigation/navigation.js"></script>
+    <script src="./contacts.js"></script>
+    <script src="../globalVariables.js"></script>
+    <script src="../add_task/add_task.js"></script>
+</head>
+
+<body onload="includeHTML(); render('contacts')">
+    <div w3-include-html="../navigation/navigation.html"></div>
+
+    <div id="overlayTask" class="d_none">
+
+    </div>
+    <div id="overlay" class="change_css_contacts d_none">
+
+    </div>
+    <div id="overlayEdit" class="change_css_contacts d_none">
+
+    </div>
+    <div>
+        <div class="main_container_contacts">
+            <div id="container_contacts_left" class="container_contacts_left">
+                <div class="contact_list" id="contactList">
+
+                </div>
+            </div>
+            <div id="container_contacts_right" class="container_contacts_right">
+                <div class="container_heading_contacts">
+                    <h1 class="heading_contacts">Contacts</h1>
+                    <div class="heading_separation_contacts"></div>
+                    <h2 class="subheading_contacts">Better with a Team</h2>
+                </div>
+                <main>
+                    <div class="show_contact_box" id="showContactBox"></div>
+                    <div class="container_buttons_bottom_task">
+                        <button onclick="toggleOverlayNewContact()" title="Add Contact" class="add_button_contacts">
+                        <p>New Contact</p>
+                        <img src="../assets/img/contacts_add.png" alt="#">
+                    </button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="placeEditContact" class="placeEditContact d-none"> </div>
+</body>
+
+</html>

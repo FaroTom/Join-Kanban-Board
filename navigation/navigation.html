@@ -1,0 +1,66 @@
+<div class="change_css">
+    <div class="topbar">
+        <div class="topbar_content">
+            <h3>Kanban Board - Project Management Tool</h3>
+        </div>
+        <div class="topbar_content_right">
+            <img onclick="openInfos()" style="cursor: pointer;" class="aside_icons" src="../assets/img/question.png">
+            <img onclick="openLogOut()" style="cursor: pointer;" class="topbar_profile" src="../assets/img/profile.png">
+        </div>
+    </div>
+    <aside class="left_main_container">
+        <div class="aside_logo_container">
+            <img class="aside_logo" src="../assets/img/logo_sidebar.png">
+        </div>
+        <div class="place_nav">
+            <nav>
+                <div class="box_links_aside">
+                    <a id="s" onclick="changeColor(this.id)" href="../summary/summary.html" class="aside_nav_container">
+                        <img class="aside_icons" src="../assets/img/summary.png">
+                        <p>Summary</p>
+                    </a>
+                </div>
+                <div class="box_links_aside">
+                    <a onclick="changeColor(this.id)" id="b" href="../board/board.html" class="aside_nav_container">
+                        <img class="aside_icons" src="../assets/img/board.png">
+                        <p>Board</p>
+                    </a>
+                </div>
+                <div class="box_links_aside">
+                    <a id="t" onclick="changeColor(this.id)" href="../add_task/add_task.html" class="aside_nav_container">
+                        <img class="aside_icons" src="../assets/img/task.png">
+                        <p>Add Task</p>
+                    </a>
+                </div>
+                <div class="box_links_aside">
+                    <a id="c" onclick="changeColor(this.id)" href="../contacts/contacts.html" class="aside_nav_container">
+                        <img class="aside_icons" src="../assets/img/contacts.png">
+                        <p>Contacts</p>
+                    </a>
+                </div>
+            </nav>
+            <div class="box_links_aside">
+                <a href="../legal_notice/legal_notice.html" class="aside_nav_container aside_legal">
+                    <img class="aside_icons" src="../assets/img/legal.png">
+                    <p>Legal notice</p>
+                </a>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<div onclick="logOut()" id="logOutButton" class="logOutButton d-none">Log Out</div>
+
+<div>
+    <header class="topbar_mobile">
+        <img class="topbar_logo_mobile" src="../assets/img/logo.png">
+        <img onclick="openLogOut()" class="topbar_profile_mobile" src="../assets/img/profile.png">
+    </header>
+
+    <footer class="footer_mobile">
+        <div id="s" onclick="changeHTML(this.id)" class="footerDiv_mobile"> <img src="../assets/img/summary.png"> <p>Summary</p> </div>
+        <div id="b" onclick="changeHTML(this.id)" class="footerDiv_mobile"> <img src="../assets/img/board.png"> <p>Board</p> </div>
+        <div id="t" onclick="changeHTML(this.id)" class="footerDiv_mobile"> <img src="../assets/img/task.png"> <p>Add Task</p>  </div>
+        <div id="c" onclick="changeHTML(this.id)" class="footerDiv_mobile"> <img src="../assets/img/contacts.png"> <p>Contacts</p>  </div>
+    </footer>
+</div>

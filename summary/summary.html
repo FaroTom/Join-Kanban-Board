@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join-Summary</title>
+    <link rel="stylesheet" href="summary.css">
+    <link rel="stylesheet" href="../assets/font/font.css">
+    <link rel="stylesheet" href="../navigation/navigation.css">
+    <script src="../navigation/navigation.js"></script>
+    <script src="./summary.js"></script>
+    <script src="../globalVariables.js"></script>
+</head>
+
+<body onload="includeHTML();render('summary')">
+    <div w3-include-html="../navigation/navigation.html"></div>
+    <div class="change_css_summary">
+        <div class="place_summary">
+            <main class="main_summary">
+                <div class="container_heading_summary">
+                    <h1 class="heading_summary">Summary</h1>
+                    <div class="heading_separation_summary"></div>
+                    <h2 class="subheading_summary">Everything in a nutshell!</h2>
+                </div>
+                <div class="container_board_activities_summary">
+                    <div class="box_board_activities_summary">
+                        <div class="board_activitiy_content_summary">
+                            <p id="tasksTotal" class="content_number_summary">5</p>
+                            <p class="content_text_summary">Tasks in <br>Board</p>
+                        </div>
+                    </div>
+                    <div class="box_board_activities_summary">
+                        <div class="board_activitiy_content_summary">
+                            <p id="tasksProgress" class="content_number_summary">2</p>
+                            <p class="content_text_summary">Tasks in <br>Progress</p>
+                        </div>
+                    </div>
+                    <div class="box_board_activities_summary">
+                        <div class="board_activitiy_content_summary">
+                            <p id="tasksAwaitingFeedback" class="content_number_summary">2</p>
+                            <p class="content_text_Feedback_summary">Awaiting <br>Feedback</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="A" class="container_deadline_hover_summary">
+                    <div class="container_deadline_summary">
+                        <div id="showDeadline" class="box_dealine_urgency_summary">
+                            <div id="boxPrioImg" class="urgency_logo_summary">
+                                <img class="img_prio" id="prioImg" src="../assets/img/urgent_task.png" alt="#">
+                            </div>
+                            <div class="box_urgency_info_summary">
+                                <p class="urgency_num_summary">1</p>
+                                <p id="urgencyText" class="urgency_text_summary">Urgent</p>
+                            </div>
+                        </div>
+                        <div class="deadline_separation_summary"></div>
+                        <div class="box_deadline_date_summery">
+                            <p id="displayDate" class="date_summery">October 16, 2022</p>
+                            <p class="text_deadline_summery">Upcoming Deadline</p>
+                        </div>
+                    </div>
+                    <div class="container_todo_summary">
+                        <div class="box_todo_summary">
+                            <div class="todo_icon_pen_summary todo_icon_summary"></div>
+                            <div class="todo_content_summary">
+                                <p id="tasksTodo" class="todo_num_summary">1</p>
+                                <p class="todo_text_summary">To-Do</p>
+                            </div>
+                        </div>
+                        <div class="box_todo_summary">
+                            <div class="todo_icon_done_summary todo_icon_summary"></div>
+                            <div class="todo_content_summary">
+                                <p id="tasksDone" class="todo_num_summary">1</p>
+                                <p class="todo_text_summary">Done</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <div class="container_greeting_summary">
+                <h2 class="greeting_summary">Good morning,</h2>
+                <h1 id="greetingName" class="greeting_name_summary"></h1>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

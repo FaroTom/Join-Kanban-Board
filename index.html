@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/font/font.css">
+    <link rel="stylesheet" href="Group-385-Join/logIn/logIn.css">
+    <script src="Group-385-Join/logIn/logIn.js"></script>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <script src="globalVariables.js"></script>
+    <title>Join</title>
+</head>
+
+<body>
+    <div id="logInHeader" class="logInHeader">
+        <span>Not a Join user?</span> <button onclick="signUp()" class="signUpBtn">Sign up</button>
+    </div>
+
+    <div class="divLogo">
+        <img src="./assets/img/logo.png">
+    </div>
+
+    <div id="contentContainer" class="contentContainer">
+
+        <div class="divLogIn">
+            <form id="logInForm" class="logInForm" onsubmit="return false">
+                <h1 class="logInHeadline">Log In</h1>
+                <hr class="underlineHeadline">
+                <input required id="logInInputMail" class="logInInputMail" type="email" placeholder="Email" />
+                <input required id="logInInputPassword" class="logInInputPassword" type="password"
+                    placeholder="Password" />
+                <div class="belowPassword">
+                    <input type="checkbox">
+                    <span>Remember me</span>
+                    <a onclick="newPassword()">Forgot my password</a>
+                </div>
+                <div class="logInButtons">
+                    <button onclick="onsubmitLogIn()" class="logInBtn">Log in</button>
+                    <button onclick="onsubmitGuestLogIn()" class="guestLogInBtn">Guest Log in</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="alertArea">
+        <div id="errorLogin" class="userAlert d-none"> User not found - <br> you may use Guest Login instead </div>
+        <div id="userCreated" class="userCreated d-none">User was successfully created!</div>
+        <div id="emailSent" class="userCreated d-none">E-Mail with instructions to reset password has been sent</div>
+    </div>
+
+</body>
+
+</html>

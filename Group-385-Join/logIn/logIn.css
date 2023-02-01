@@ -1,0 +1,348 @@
+body {
+    margin: 0;
+    background-color: rgb(246, 247, 248);
+    font-family: 'Open Sans';
+    padding: 0;
+}
+
+.divLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(246, 247, 248);
+    transition-delay: 2s;
+    animation-name: moveImg;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+.divLogo img {
+    height: 335px;
+    width: 274px;
+    animation-name: shrinkImg;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes moveImg {
+    from {
+        width: 100%
+    }
+    to {
+        width: 220px
+    }
+    from {
+        height: 100vh
+    }
+    to {
+        height: 220px
+    }
+    to {
+        background-color: rgb(246, 247, 248, 0.0);
+    }
+}
+
+@keyframes shrinkImg {
+    to {
+        width: 109.6px
+    }
+    to {
+        height: 134px
+    }
+}
+
+.logInHeader {
+    width: 100%;
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    justify-content: flex-end;
+    padding: 40px;
+    padding-right: 80px;
+    gap: 20px;
+    align-items: center;
+}
+
+.signUpBtn {
+    border: none;
+    background-color: rgb(42, 54, 71);
+    color: white;
+    height: 38px;
+    width: 72px;
+    border-radius: 6px;
+}
+
+.signUpBtn:hover {
+    cursor: pointer;
+    background-color: rgb(41, 171, 226);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.contentContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.divLogIn {
+    width: 600px;
+    height: 400px;
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.divForgotPassword {
+    width: 700px;
+    height: 340px;
+    padding: 14px;
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.logInHeadline {
+    font-size: 50px;
+    margin-bottom: 4px !important;
+}
+
+.underlineHeadline {
+    width: 120px;
+    border: none;
+    background-color: #6BC5EB;
+    height: 3px;
+    margin-bottom: 28px;
+}
+
+.logInForm {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.logInInputMail {
+    border-radius: 6px;
+    min-width: 280px;
+    margin-bottom: 34px;
+    border: 1.8px solid rgb(0, 0, 0, 0.1);
+    padding: 8px;
+    background: url("mail.png") no-repeat scroll;
+    background-size: 16px;
+    background-position: center;
+    background-position-x: calc(100% - 8px);
+}
+
+.logInInputPassword {
+    border-radius: 6px;
+    min-width: 280px;
+    margin-bottom: 34px;
+    border: 1.8px solid rgb(0, 0, 0, 0.1);
+    padding: 8px;
+    background: url("lock.png") no-repeat scroll;
+    background-size: 16px;
+    background-position: center;
+    background-position-x: calc(100% - 8px);
+}
+
+.logInInputName {
+    border-radius: 6px;
+    min-width: 280px;
+    margin-bottom: 34px;
+    border: 1.8px solid rgb(0, 0, 0, 0.1);
+    padding: 8px;
+    background: url("person.png") no-repeat scroll;
+    background-size: 16px;
+    background-position: center;
+    background-position-x: calc(100% - 8px);
+}
+
+.belowPassword {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.belowPassword a {
+    margin-left: 16px;
+    text-decoration: none;
+    color: rgb(41, 171, 226);
+    cursor: pointer;
+}
+
+.belowPassword input {
+    margin-right: 12px;
+}
+
+.logInButtons {
+    margin-top: 32px;
+}
+
+.logInBtn {
+    color: white;
+    background-color: rgb(42, 54, 71);
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    width: 82px;
+}
+
+.logInBtn:hover {
+    cursor: pointer;
+    background-color: rgb(41, 171, 226);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.guestLogInBtn {
+    color: rgb(42, 54, 71);
+    width: 100px;
+    border-radius: 6px;
+    padding: 6px;
+    background-color: white;
+    border: 1px solid rgb(42, 54, 71);
+}
+
+.guestLogInBtn:hover {
+    color: rgb(41, 171, 226);
+    border: 1px solid rgb(41, 171, 226);
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.userAlert {
+    width: 240px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(42, 54, 71);
+    border-radius: 12px;
+    padding: 10px;
+    color: white;
+    position: absolute;
+    bottom: 9%;
+}
+
+.userCreated {
+    background-color: rgb(42, 54, 71);
+    border-radius: 12px;
+    padding: 8px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    bottom: 9%;
+}
+
+.alertArea {
+    position: absolute;
+    bottom: 9%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.d-none {
+    display: none;
+}
+
+@media (max-width: 1030px) {
+    .contentContainer {
+        padding-top: 3rem;
+    }
+}
+
+@media (max-width: 850px) {
+    .logInHeader {
+        bottom: 2px !important;
+        right: 0 !important;
+        justify-content: center;
+        padding-right: 0 !important;
+        align-items: center;
+        top: auto;
+    }
+    body {
+        margin: 30px;
+    }
+    .divForgotPassword {
+        flex-wrap: wrap;
+    }
+    @keyframes shrinkImg {
+        to {
+            width: 82.2px
+        }
+        to {
+            height: 100.5px
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .divLogIn {
+        width: 480px;
+    }
+    .divForgotPassword {
+        height: 400px;
+    }
+}
+
+@media (max-width: 520px) {
+    .divLogIn {
+        width: 360px;
+        height: 420px;
+    }
+}
+
+@media (max-width: 420px) {
+    .divLogIn {
+        width: 320px;
+        height: 420px;
+    }
+    .divForgotPassword {
+        height: 420px;
+    }
+    @keyframes moveImg {
+        to {
+            height: 160px
+        }
+        to {
+            width: 160px
+        }
+        to {
+            background-color: rgb(246, 247, 248, 0.0);
+        }
+    }
+}
+
+@media (max-height: 720px) {
+    .divLogIn {
+        width: 320px;
+        height: 380px !important;
+        margin-top: 10px !important;
+    }
+    @keyframes moveImg {
+        to {
+            height: 130px
+        }
+        to {
+            width: 130px
+        }
+        to {
+            background-color: rgb(246, 247, 248, 0.0);
+        }
+    }
+}
