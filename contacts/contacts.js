@@ -110,6 +110,7 @@ function createContact(lastName, firstName, i) {
     addContactToStorage(contact);
     i ? toggleOverlayEditContact() : toggleOverlayNewContact();
     renderContacts();
+    location.reload();
 }
 
 function addContactToStorage(contact) {
@@ -135,9 +136,10 @@ function toggleOverlayNewContact() {
 }
 
 function toggleOverlayEditContact(i) {
-    document.getElementById('overlayEdit').classList.toggle("d_none");
-    if (!overlayEdit.classList.contains('d_none')) {
-        overlayEdit.innerHTML = editContactOverlayHTML(i);
+    document.getElementById('placeEditContact').classList.toggle('d-none');
+    let placeEditContact = document.getElementById('placeEditContact');
+    if (!placeEditContact.classList.contains('d_none')) {
+        placeEditContact.innerHTML = editContactHTML(i);
         showEditContact(i)
     }
 }
@@ -151,13 +153,10 @@ function toggleTask() {
 
 function showEditContact(i) {
     let storedContacts = JSON.parse(localStorage.getItem('contacts'))
-    setTimeout(() => {
-        document.getElementById('name').value = storedContacts[i].firstName + ' ' + storedContacts[i].lastName;
-        document.getElementById('email').value = storedContacts[i].email;
-        document.getElementById('phone').value = storedContacts[i].phone;
-        document.getElementById('showContactImg').style.backgroundColor = storedContacts[i].color;
-        showName();
-    }, 10)
+    document.getElementById('edit_firstName').value = storedContacts[i].firstName;
+    document.getElementById('edit_lastName').value = storedContacts[i].lastName;
+    document.getElementById('edit_email').value = storedContacts[i].email;
+    document.getElementById('edit_phone').value = storedContacts[i].phone;
 }
 
 function showName() {
@@ -245,6 +244,28 @@ function closeContactDetails() {
     document.getElementById('container_contacts_left').classList.remove('d-none');
 }
 
+function editContact(i) {
+    let storedContacts = JSON.parse(localStorage.getItem('contacts'));
+    let firstName = document.getElementById('edit_firstName').value;
+    let lastName = document.getElementById('edit_lastName').value;
+    let email = document.getElementById('edit_email').value;
+    let phone = document.getElementById('edit_phone').value;
+    storedContacts[i].firstName = firstName;
+    storedContacts[i].lastName = lastName;
+    storedContacts[i].email = email;
+    storedContacts[i].phone = phone;
+    localStorage.removeItem('contacts');
+    localStorage.setItem('contacts', JSON.stringify(storedContacts));
+    closeEditContact();
+    renderContacts();
+    document.getElementById('showContactBox').innerHTML = '';
+}
+
+function closeEditContact() {
+    document.getElementById('placeEditContact').innerHTML = '';
+    document.getElementById('placeEditContact').classList.toggle('d-none');
+}
+
 function generateLetters(letter) {
     return `   
     <div id="boxContact${letter}" class="box_contact">
@@ -305,7 +326,7 @@ function showSelectedContactHTML(selectedContact, i) {
     `
 }
 
-/* function editContactHTML(i) {
+function editContactHTML(i) {
     return `
     <div class="overlay_edit_contact">
         <div class="edit_overlay_leftside">
@@ -317,8 +338,8 @@ function showSelectedContactHTML(selectedContact, i) {
         </div>
         <div class="edit_overlay_rightside">
             <form class="rightside_form" onsubmit="editContact(${i}); return false">
-            <input onblur="showName();checkNamelength(this.id)"  required  type='text'  placeholder="Name" class="overlay_input name" id="edit_firstName">
-            <input onblur="showName();checkNamelength(this.id)"  required  type='text'  placeholder="Name" class="overlay_input name" id="edit_lastName">
+            <input required  type='text'  placeholder="First Name" class="overlay_input name" id="edit_firstName">
+            <input required  type='text'  placeholder="Last Name" class="overlay_input name" id="edit_lastName">
             <input required placeholder="Email" class="overlay_input email" type="email" id="edit_email">
             <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="number" id="edit_phone">
             <div class="place_buttons_overlay">
@@ -337,7 +358,7 @@ function showSelectedContactHTML(selectedContact, i) {
     </div>
     `
 }
- */
+
 function taskOverlayHTML() {
     return `
     <div class="background_overlay">
