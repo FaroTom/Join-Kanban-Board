@@ -21,8 +21,6 @@ async function getSubtasks() {
 
 
 async function changeSubtask(subtask, url) {
-    console.log(url)
-    console.log(subtask)
     const data = JSON.stringify(subtask);
     fetch(url, {
             method: 'PUT',
@@ -33,18 +31,14 @@ async function changeSubtask(subtask, url) {
             body: data
         })
         .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
 }
 
 async function deleteSubtask(subtask, url) {
-    console.log(url)
-    console.log(subtask)
     const data = JSON.stringify(subtask);
     fetch(url, {
             method: 'DELETE',
             body: data
         })
-        .then(response => console.log(JSON.stringify(response)))
 }
 
 
@@ -87,7 +81,6 @@ async function putToDo(task, url) {
             body: data
         })
         .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
 }
 
 async function deleteToDo(task, url) {
@@ -100,7 +93,6 @@ async function deleteToDo(task, url) {
             },
             body: data
         })
-        .then(response => console.log(JSON.stringify(response)))
 }
 
 

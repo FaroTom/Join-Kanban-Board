@@ -50,6 +50,7 @@ let changedUrgency;
 
 // Update container with Todo-Tasks based on status ('open', 'in progress', 'awaiting feedback', 'done')
 function renderBoard() {
+    setContacts();
     updateHTMLOpenTasks();
     updateHTMLInProgessTasks();
     updateHTMLFeedbackTasks();
@@ -68,6 +69,13 @@ function updateHTMLOpenTasks() {
         let openIndex = index + "o"
         document.getElementById('open').innerHTML += generateTodoHTML(element, openIndex);
         updateToDo(element, openIndex);
+    }
+}
+
+function setContacts() {
+    if (JSON.parse(localStorage.getItem('contacts')) == null) {
+        let contactsString = JSON.stringify(contacts);
+        localStorage.setItem('contacts', contactsString);
     }
 }
 
@@ -166,6 +174,7 @@ function getPrio(task, index) {
 }
 
 function addUserToBoard(index, splitUser, i, task, letters) {
+    let storedContacts = JSON.parse(localStorage.getItem('contacts'))
     let placeUser = 0;
     document.getElementById('checkUsers' + index).innerHTML += `<div class="todo_contact_img" id="checkUser${index}${i}">${letters[0]}${letters[1]}</div>`
 
@@ -173,7 +182,7 @@ function addUserToBoard(index, splitUser, i, task, letters) {
     if (i > 0) {
         document.getElementById('checkUser' + index + i).style.left = placeUser + 'rem'
     }
-    let filteredcontacts = contacts.filter((contact) => {
+    let filteredcontacts = storedContacts.filter((contact) => {
         if (splitUser.includes(contact.lastName))
             return contact
     });
@@ -386,10 +395,11 @@ function setNameDetails(fitleredTask, id) {
 
 // adds small circle with initials and names of users that belong to the selected task
 function addUserToDetails(id, letters, fitleredTask) {
+    let storedContacts = JSON.parse(localStorage.getItem('contacts'))
     for (let i = 0; i < arraySplitUser[0].length; i++) {
         let element = arraySplitUser[0][i];
         element = element.replace(/\,/g, ' ');
-        let filteredContact = contacts.filter((user) => {
+        let filteredContact = storedContacts.filter((user) => {
             return element.includes(user.firstName)
         })
         document.getElementById(id).innerHTML += `<div class="assignedContact"> <div style="background-color:${filteredContact[0]['color']}" class="details_contact_img">${letters[i]}</div> <p> ${element} </div>`

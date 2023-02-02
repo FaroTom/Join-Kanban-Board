@@ -149,6 +149,7 @@ function toggleTask() {
     if (!overlayTask.classList.contains('d_none')) {
         overlayTask.innerHTML = taskOverlayHTML();
     }
+    loadUser();
 }
 
 function showEditContact(i) {

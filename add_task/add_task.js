@@ -33,6 +33,7 @@ function renderTask() {
 
 /** Function sets needed variables and passes them along to createTask function  */
 function checkValdation(newStatus) {
+    let storedContacts = JSON.parse(localStorage.getItem('contacts'));
     if (newStatus) {
         status = newStatus
     }
@@ -41,14 +42,13 @@ function checkValdation(newStatus) {
     let filteredLabels = categoryLabels.filter((ele) => {
         return ele.title === categoryLabel;
     });
-    let filteredcontact = contacts.filter((ele) => {
+    let filteredcontact = storedContacts.filter((ele) => {
         return user.includes(ele.lastName)
     })
 
     if (filteredLabels.length > 0 && filteredcontact.length > 0 && typeof priority !== 'undefined' > 0 && chosenTitles.length > 0) {
         createChosenSubtask();
         createTask(user, filteredLabels, status);
-        window.location.href = "../board/board.html"
     } else {
         alert("unvalid Request, try again.")
     }
@@ -73,6 +73,7 @@ function createTask(user, filteredLabels, status) {
         "subtasks": chosenSubtasks
     }
     postTodo(task);
+    location.href = "../board/board.html"
     /*   setBackFormular(title, description) */
 }
 
@@ -183,9 +184,10 @@ function selectUser(e) {
     let numberId = e[e.length - 1]
     let NameId = "newCategory2" + numberId
     let lastNameUser = document.getElementById(NameId).innerHTML;
+    let storedContacts = JSON.parse(localStorage.getItem('contacts'))
 
     if (id.checked === true) {
-        let selectedUser = contacts.filter(function(ele) {
+        let selectedUser = storedContacts.filter(function(ele) {
             return lastNameUser.includes(ele.lastName)
         })
         usersInTask.push(selectedUser[0]);
@@ -201,9 +203,10 @@ function selectUser(e) {
 
 /** Function loads created contacts into user selection */
 function loadUser() {
+    let storedContacts = JSON.parse(localStorage.getItem('contacts'))
     document.getElementById('addUser').innerHTML = "";
-    for (let i = 0; i < contacts.length; i++) {
-        const contact = contacts[i];
+    for (let i = 0; i < storedContacts.length; i++) {
+        const contact = storedContacts[i];
         document.getElementById('addUser').innerHTML += loadUserHTML(contact, i);
     }
 }
