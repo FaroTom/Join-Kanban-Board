@@ -52,6 +52,7 @@ function checkValdation(newStatus) {
     } else {
         alert("unvalid Request, try again.")
     }
+    location.href = "../board/board.html"
 }
 /** Function creates task depending on passed variables */
 function createTask(user, filteredLabels, status) {
@@ -73,7 +74,6 @@ function createTask(user, filteredLabels, status) {
         "subtasks": chosenSubtasks
     }
     postTodo(task);
-    location.href = "../board/board.html"
     /*   setBackFormular(title, description) */
 }
 
