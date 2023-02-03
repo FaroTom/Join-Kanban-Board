@@ -110,7 +110,14 @@ function createContact(lastName, firstName, i) {
     addContactToStorage(contact);
     i ? toggleOverlayEditContact() : toggleOverlayNewContact();
     renderContacts();
-    location.reload();
+    showContactCreated();
+}
+
+function showContactCreated() {
+    document.getElementById('contactCreated').classList.remove('d-none');
+    setTimeout(() => {
+        document.getElementById('contactCreated').classList.add('d-none');
+    }, 5000)
 }
 
 function addContactToStorage(contact) {
@@ -493,7 +500,7 @@ function newContactOverlayHTML() {
 
             </div>
         </div>
-        <form class="rightside_form" onsubmit="checkValdationContact(event); return false">
+        <form class="rightside_form" onsubmit="checkValdationContact(event)">
             <input onblur="showName();checkNamelength(this.id)"  required  type='text'  placeholder="Name" class="overlay_input name" id="name">
             <input required placeholder="Email" class="overlay_input email" type="email" id="email">
             <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="number" id="phone">
