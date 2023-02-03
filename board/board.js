@@ -311,6 +311,17 @@ function changeTaskDetails(id) {
     let boardContent = document.getElementById('boardContent');
     boardContent.innerHTML = '';
     boardContent.innerHTML += changeTaskDetailsHTML(id)
+    setTaskDetails(id);
+}
+
+function setTaskDetails(id) {
+    let filteredTask = tasks.filter((task) => {
+        return task.id == id;
+    })
+    console.log(filteredTask)
+    document.getElementById(`inputTitle${id}`).value = filteredTask[0].title;
+    document.getElementById(`inputDescription${id}`).value = filteredTask[0].description;
+    document.getElementById(`inputDate${id}`).value = filteredTask[0].due_date;
 }
 
 function confirmChangedTask(id) {
