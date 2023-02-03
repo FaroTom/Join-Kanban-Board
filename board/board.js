@@ -333,7 +333,6 @@ function confirmChangedTask(id) {
 
 // checks if changes to selected task have been made
 function checkFilteredTask(id) {
-    user = StringArrayUser.toString()
     let title = document.getElementById(`inputTitle${id}`);
     let description = document.getElementById(`inputDescription${id}`);
     let filteredTask = tasks.filter((task) => {
@@ -345,7 +344,7 @@ function checkFilteredTask(id) {
     if (description.value !== '') {
         filteredTask[0].description = description.value;
     }
-    if (changedDate !== undefined || changedDate !== null) {
+    if (changedDate) {
         filteredTask[0].due_date = changedDate;
     }
     if (changedUrgency !== undefined) {
@@ -354,7 +353,7 @@ function checkFilteredTask(id) {
     if (changedStatus !== undefined) {
         filteredTask[0].status = changedStatus;
     }
-    if(user !== undefined) {
+    if(user) {
         filteredTask[0].user = user;
     }
     requestTask(filteredTask)
@@ -886,7 +885,6 @@ function changeTaskDetailsHTML(id) {
     </div>
 
     <img onclick="confirmChangedTask(${id})" class="saveChangesImg" src="../assets/img/done_white.png">
-   
     `
 }
 

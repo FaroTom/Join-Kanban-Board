@@ -389,9 +389,10 @@ main {
 
 .overlay_add_contact {
     position: absolute;
-    top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
+    animation-name: slideIn;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
     width: 70%;
     height: 70%;
     border-radius: 2rem;
@@ -400,6 +401,21 @@ main {
     display: flex;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     border: none;
+}
+
+@keyframes slideIn {
+    from {
+        top: 100%
+    }
+    to {
+        top: 50%;
+    }
+    from {
+        left: 100%;
+    }
+    to {
+        left: 50%;
+    }
 }
 
 .overlay_leftside {
