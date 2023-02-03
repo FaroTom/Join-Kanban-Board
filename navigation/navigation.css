@@ -242,3 +242,9 @@ nav {
         height: 12%;
     }
 }
+
+@media (min-width: 1650px) {
+    .aside_nav_container{
+        font-size: 18px;
+    }
+}

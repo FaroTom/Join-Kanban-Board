@@ -28,6 +28,10 @@ let tasksDone;
 let tasksTodo;
 let currentUserName;
 
+function toBoard() {
+    location.href = "../board/board.html"
+}
+
 function defineCurrentUser() {
     currentUser = localStorage.getItem('user');
     currentUserObject = JSON.parse(currentUser)

@@ -46,6 +46,7 @@ let priorityDetails;
 let priorityColor;
 let currentStatus;
 let changedUrgency;
+let changedStatus;
 
 
 // Update container with Todo-Tasks based on status ('open', 'in progress', 'awaiting feedback', 'done')
@@ -318,7 +319,6 @@ function setTaskDetails(id) {
     let filteredTask = tasks.filter((task) => {
         return task.id == id;
     })
-    console.log(filteredTask)
     document.getElementById(`inputTitle${id}`).value = filteredTask[0].title;
     document.getElementById(`inputDescription${id}`).value = filteredTask[0].description;
     document.getElementById(`inputDate${id}`).value = filteredTask[0].due_date;
@@ -333,6 +333,7 @@ function confirmChangedTask(id) {
 
 // checks if changes to selected task have been made
 function checkFilteredTask(id) {
+    user = StringArrayUser.toString()
     let title = document.getElementById(`inputTitle${id}`);
     let description = document.getElementById(`inputDescription${id}`);
     let filteredTask = tasks.filter((task) => {
@@ -349,6 +350,12 @@ function checkFilteredTask(id) {
     }
     if (changedUrgency !== undefined) {
         filteredTask[0].priority = changedUrgency;
+    }
+    if (changedStatus !== undefined) {
+        filteredTask[0].status = changedStatus;
+    }
+    if(user !== undefined) {
+        filteredTask[0].user = user;
     }
     requestTask(filteredTask)
 }
@@ -526,6 +533,55 @@ function searchInDone(search) {
     }
 }
 
+function changeStatus(status) {
+    changedStatus = status
+    if (status === 1) {
+        document.getElementById(`change_status_button_${status}`).classList.add('status_button_clicked')
+        if (document.getElementById(`change_status_button_2`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_2`).classList.remove('status_button_clicked')
+        }
+        if (document.getElementById(`change_status_button_3`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_3`).classList.remove('status_button_clicked')
+        }
+        if (document.getElementById(`change_status_button_4`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_4`).classList.remove('status_button_clicked')
+        }
+    } else if (status === 2) {
+        document.getElementById(`change_status_button_${status}`).classList.add('status_button_clicked')
+        if (document.getElementById(`change_status_button_1`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_1`).classList.remove('status_button_clicked')
+        }
+        if (document.getElementById(`change_status_button_3`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_3`).classList.remove('status_button_clicked')
+        }
+        if (document.getElementById(`change_status_button_4`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_4`).classList.remove('status_button_clicked')
+        }
+    } else if (status === 3) {
+        document.getElementById(`change_status_button_${status}`).classList.add('status_button_clicked')
+        if (document.getElementById(`change_status_button_2`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_2`).classList.remove('status_button_clicked')
+        }
+        if (document.getElementById(`change_status_button_1`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_1`).classList.remove('status_button_clicked')
+        }
+        if (document.getElementById(`change_status_button_4`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_4`).classList.remove('status_button_clicked')
+        }
+    } else if (status === 4) {
+        document.getElementById(`change_status_button_${status}`).classList.add('status_button_clicked')
+        if (document.getElementById(`change_status_button_2`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_2`).classList.remove('status_button_clicked')
+        }
+        if (document.getElementById(`change_status_button_3`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_3`).classList.remove('status_button_clicked')
+        }
+        if (document.getElementById(`change_status_button_1`).classList.contains('status_button_clicked')) {
+            document.getElementById(`change_status_button_1`).classList.remove('status_button_clicked')
+        }
+    }
+}
+
 // changes urgency/priority when clicking on an urgency button in change task details html
 function changeUrgency(prio, id) {
     unsetChangedPrioHTML(id);
@@ -602,15 +658,15 @@ function generateTodoHTML(element, index) {
 
 function unsetChangedPrioHTML(id) {
     document.getElementById(`containerButtonsTask${id}`).innerHTML = `
-    <button type='button' id="changeUrgentButton" onclick="changeUrgency('urgent', ${id}) " class="box_button_task ">
+    <button type='button' id="changeUrgentButton" onclick="changeUrgency('H', ${id}) " class="box_button_task ">
                 <p class="text_urgency_task ">Urgent</p>
                 <div id="changePrioUrgent" class="urgency_img_u_task urgency_img_task "></div>
     </button>
-    <button type='button' id="changeMediumButton" onclick="changeUrgency('medium', ${id}) " class="box_button_task ">
+    <button type='button' id="changeMediumButton" onclick="changeUrgency('M', ${id}) " class="box_button_task ">
                 <p class="text_urgency_task ">Medium</p>
                 <div id="changePrioMedium" class="urgency_img_m_task urgency_img_task "></div>
     </button>
-    <button type='button' id="changeLowButton" onclick="changeUrgency('low', ${id}) " class="box_button_task ">
+    <button type='button' id="changeLowButton" onclick="changeUrgency('L', ${id}) " class="box_button_task ">
                 <p class="text_urgency_task ">Low</p>
                 <div id="changePrioLow" class="urgency_img_l_task urgency_img_task "></div>
     </button>
@@ -817,6 +873,15 @@ function changeTaskDetailsHTML(id) {
         <div class="dropdown display_none" id="dropdown${id}">
             <div id="addUser">
             </div>
+        </div>
+    </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline" for="button">Status</label>
+        <div class="place_change_status">
+            <div id="change_status_button_1" onclick="changeStatus(1)" class="button_change_status">To Do</div>
+            <div id="change_status_button_2" onclick="changeStatus(2)" class="button_change_status">In Progress</div>
+            <div id="change_status_button_3" onclick="changeStatus(3)" class="button_change_status">Awaiting Feedback</div>
+            <div id="change_status_button_4" onclick="changeStatus(4)" class="button_change_status">Done</div>
         </div>
     </div>
 

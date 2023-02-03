@@ -962,3 +962,18 @@ main {
         height: 100%;
     }
 }
+
+@media (min-height: 850px) {
+    .contact_list {
+        padding-top: 2rem;
+    }
+}
+
+@media (min-height: 1100px) {
+    .contact_list {
+        padding-top: 4rem;
+    }
+    .container_heading_contacts {
+        padding-top: 10rem;
+    }
+}
