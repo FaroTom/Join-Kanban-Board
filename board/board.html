@@ -38,28 +38,28 @@
                     <h2 class="heading_categories">To Do</h2>
                     <img class="todo_icon" onclick="toggleTask('1'); renderTask()" src="../assets/img/plus_button.png">
                 </div>
-                <div class="drag_area" id="open" ondrop="moveTo('1')" ondragover="allowDrop(event)" ondragenter="highlight('open')"></div>
+                <div class="drag_area" id="open" ondrop="moveTo('1', this.id)" ondragover="allowDrop(event); highlight('open')" ondragleave="removeHighlight(this.id)"></div>
             </div>
             <div class="box_category">
                 <div class="board_header_container">
                     <h2 class="heading_categories">In Progress</h2>
                     <img class="todo_icon" onclick="toggleTask('2'); renderTask()" src="../assets/img/plus_button.png">
                 </div>
-                <div class="drag_area" id="progress" ondrop="moveTo('2')" ondragover="allowDrop(event)" ondragenter="highlight('progress')"></div>
+                <div class="drag_area" id="progress" ondrop="moveTo('2', this.id)" ondragover="allowDrop(event); highlight('progress')" ondragleave="removeHighlight(this.id)"></div>
             </div>
             <div class="box_category">
                 <div class="board_header_container">
                     <h2 class="heading_categories">Awaiting Feedback</h2>
                     <img class="todo_icon" onclick="toggleTask('3'); renderTask()" src="../assets/img/plus_button.png">
                 </div>
-                <div class="drag_area" id="feedback" ondrop="moveTo('3')" ondragover="allowDrop(event)" ondragenter="highlight('feedback')"></div>
+                <div class="drag_area" id="feedback" ondrop="moveTo('3', this.id)" ondragover="allowDrop(event); highlight('feedback')" ondragleave="removeHighlight(this.id)"></div>
             </div>
             <div class="box_category">
                 <div class="board_header_container">
                     <h2 class="heading_categories">Done</h2>
                     <img class="todo_icon" onclick="toggleTask('4'); renderTask()" src="../assets/img/plus_button.png">
                 </div>
-                <div class="drag_area" id="closed" ondrop="moveTo('4')" ondragover="allowDrop(event)" ondragenter="highlight('closed')"></div>
+                <div class="drag_area" id="closed" ondrop="moveTo('4', this.id)" ondragover="allowDrop(event); highlight('closed')" ondragleave="removeHighlight(this.id)"></div>
             </div>
         </div>
     </main>

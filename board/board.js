@@ -213,12 +213,13 @@ function startDragging(id) {
 }
 
 // Change status when element is moved (E.g. todo-task with id 1: the status field is changed from 'open' to 'closed'.).
-function moveTo(status) {
+function moveTo(status, id) {
     let filteredTask = tasks.filter((task) => {
         return task['id'] === currentDraggedElement
     });
     filteredTask[0]['status'] = status;
     requestTask(filteredTask)
+    document.getElementById(id).classList.remove('highlight_drag_area')
 }
 
 
@@ -231,17 +232,13 @@ function removeDragBackground() {
 }
 
 // Change background color when element is dragged.
+
 function highlight(id) {
-    let category = document.getElementById(id).querySelector('.drag_area_highlight');
-    if (category == null) {
-        document.getElementById(id).innerHTML += `
-        <div class="drag_area_highlight" ></div>`
-    }
+    document.getElementById(id).classList.add('highlight_drag_area')
 }
 
 function removeHighlight(id) {
-    let element = document.getElementById(id);
-    element.removeChild(element.lastChild);
+    document.getElementById(id).classList.remove('highlight_drag_area')
 }
 
 // ??? ////////////////////////////////////
@@ -353,10 +350,11 @@ function checkFilteredTask(id) {
     if (changedStatus !== undefined) {
         filteredTask[0].status = changedStatus;
     }
-    if(user) {
-        filteredTask[0].user = user;
+    if(StringArrayUser.toString()) {
+        filteredTask[0].user = StringArrayUser.toString();
     }
     requestTask(filteredTask)
+    StringArrayUser = undefined;
 }
 
 function getDeleteSubtask(filteredtask) {
@@ -422,7 +420,6 @@ function addUserToDetails(id, letters, fitleredTask) {
         document.getElementById(id).innerHTML += `<div class="assignedContact"> <div style="background-color:${filteredContact[0]['color']}" class="details_contact_img">${letters[i]}</div> <p> ${element} </div>`
     }
     arraySplitUser = [];
-
 }
 
 function setPriorityColor(fitleredTask) {
@@ -829,6 +826,7 @@ function taskOverlayHTML(id) {
 
 function changeTaskDetailsHTML(id) {
     return `
+    <form id="changeTaskForm" onsubmit="confirmChangedTask(${id})">
     <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
     <div class="editCategories">
         <label class="detailsSubheadline">Title</label>
@@ -884,7 +882,8 @@ function changeTaskDetailsHTML(id) {
         </div>
     </div>
 
-    <img onclick="confirmChangedTask(${id})" class="saveChangesImg" src="../assets/img/done_white.png">
+    <button type="image" name="submit" > <img class="saveChangesImg" src="../assets/img/done_white.png"> </button>
+    </form>
     `
 }
 
