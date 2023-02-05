@@ -462,10 +462,12 @@ function toAddTaskPage() {
 
 function searchTask() {
     let search = document.getElementById('search').value;
-    searchInToDos(search);
-    searchInProgress(search);
-    searchInAwaitingFeedback(search);
-    searchInDone(search);
+    let searchToLowerCase = search.toLowerCase();
+    console.log(searchToLowerCase)
+    searchInToDos(searchToLowerCase);
+    searchInProgress(searchToLowerCase);
+    searchInAwaitingFeedback(searchToLowerCase);
+    searchInDone(searchToLowerCase);
 }
 
 // search functions, searches in all 4 categories (toDo, in progress, awaiting feedback, done)
@@ -476,7 +478,7 @@ function searchInToDos(search) {
     document.getElementById('open').innerHTML = '';
     for (let index = 0; index < openTasks.length; index++) {
         const element = openTasks[index];
-        if (element['title'].includes(search)) {
+        if (element['title'].toLowerCase().includes(search)) {
             let openIndex = index + "o"
             document.getElementById('open').innerHTML += generateTodoHTML(element, openIndex);
             updateToDo(element, openIndex);
@@ -491,7 +493,7 @@ function searchInProgress(search) {
     document.getElementById('progress').innerHTML = '';
     for (let index = 0; index < progress.length; index++) {
         const element = progress[index];
-        if (element['title'].includes(search)) {
+        if (element['title'].toLowerCase().includes(search)) {
             let progressIndex = index + "p"
             document.getElementById('progress').innerHTML += generateTodoHTML(element, progressIndex);
             updateToDo(element, progressIndex);
@@ -506,7 +508,7 @@ function searchInAwaitingFeedback(search) {
     document.getElementById('feedback').innerHTML = '';
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
-        if (element['title'].includes(search)) {
+        if (element['title'].toLowerCase().includes(search)) {
             let feedbackIndex = index + "f"
             document.getElementById('feedback').innerHTML += generateTodoHTML(element, feedbackIndex);
             updateToDo(element, feedbackIndex);
@@ -521,7 +523,7 @@ function searchInDone(search) {
     document.getElementById('closed').innerHTML = '';
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
-        if (element['title'].includes(search)) {
+        if (element['title'].toLowerCase().includes(search)) {
             let doneIndex = index + "d"
             document.getElementById('closed').innerHTML += generateTodoHTML(element, doneIndex);
             updateToDo(element, doneIndex);
